@@ -11,30 +11,17 @@ def max_pairwise_product_naive(len_numbers, numbers):
     return product
 
 def max_pairwise_product_fast(len_numbers, numbers):
+    largest, second_largest = -1, -1
 
-    largest, second_largest = None, None
-
-    if numbers[0] < numbers[1]:
-        largest = numbers[1]
-        second_largest = numbers[0]
-    else:
-        largest = numbers[0]
-        second_largest = numbers[1]
-
-    if len_numbers <= 2:
-        return largest * second_largest
-    
-    for i, number in enumerate(numbers):
-        if i < 2:
-            continue
+    for number in numbers:
         if number > largest:
-            second_largest = largest
-            largest = number
-            continue
+            largest, second_largest = number, largest
         elif number > second_largest:
             second_largest = number
 
-    return largest * second_largest
+    product = largest * second_largest
+
+    return product
 
 if __name__ == '__main__':
     n = int(input())
