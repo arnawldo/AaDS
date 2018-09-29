@@ -1,9 +1,16 @@
 # Uses python3
-n = int(input())
-a = [int(x) for x in input().split()]
-assert(len(a) == n)
 
-def max_pairwise_product(len_numbers, numbers):
+def max_pairwise_product_naive(len_numbers, numbers):
+    
+    product = 0
+
+    for i in range(len_numbers):
+       for j in range(i + 1, len_numbers):
+           product = max(product, numbers[i] * numbers[j])
+    
+    return product
+
+def max_pairwise_product_fast(len_numbers, numbers):
 
     largest, second_largest = None, None
 
@@ -29,4 +36,8 @@ def max_pairwise_product(len_numbers, numbers):
 
     return largest * second_largest
 
-print(max_pairwise_product(n, a))
+if __name__ == '__main__':
+    n = int(input())
+    a = [int(x) for x in input().split()]
+    assert(len(a) == n)
+    print(max_pairwise_product_fast(n, a))
